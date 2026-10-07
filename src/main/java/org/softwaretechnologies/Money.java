@@ -2,6 +2,7 @@ package org.softwaretechnologies;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Objects;
 import java.util.Random;
 
 import static java.lang.Integer.MAX_VALUE;
@@ -26,8 +27,11 @@ public class Money {
      */
     @Override
     public boolean equals(Object o) {
-        // TODO: реализуйте вышеуказанную функцию
-
+        if(o != null && o.getClass().equals(Money.class)&&Objects.equals(type,((Money) o).type)) {
+            BigDecimal scale = (amount==null)?null:amount.setScale(4,RoundingMode.HALF_UP);
+            BigDecimal scale1 = (((Money) o).amount==null)?null:((Money) o).amount.setScale(4,RoundingMode.HALF_UP);
+            return Objects.equals(scale, scale1);
+        }
         return false;
     }
 
@@ -48,13 +52,31 @@ public class Money {
      */
     @Override
     public int hashCode() {
-        // TODO: реализуйте вышеуказанную функцию
-
-
-        Random random = new Random();
-        return random.nextInt();
+        if (amount == null) return 10000;
+        else {
+            BigDecimal scale = amount.setScale(4, RoundingMode.HALF_UP);
+            float res = 10000 * scale.floatValue();
+            if (res >= Integer.MAX_VALUE - 5)
+                return Integer.MAX_VALUE;
+            switch (type) {
+                case USD -> {
+                    return (int) res + 1;
+                }
+                case EURO -> {
+                    return (int) res + 2;
+                }
+                case RUB -> {
+                    return (int) res + 3;
+                }
+                case KRONA -> {
+                    return (int) res + 4;
+                }
+                case null -> {
+                    return (int) res + 5;
+                }
+            }
+        }
     }
-
     /**
      * Верните строку в формате
      * Тип_ВАЛЮТЫ: количество.XXXX
@@ -74,9 +96,8 @@ public class Money {
      */
     @Override
     public String toString() {
-        // TODO: реализуйте вышеуказанную функцию
-        String str = type.toString()+": "+amount.setScale(4, RoundingMode.HALF_UP).toString();
-        return str;
+        return type.toString()+": "+ amount.setScale(4, RoundingMode.HALF_UP);
+
     }
 
     public BigDecimal getAmount() {
