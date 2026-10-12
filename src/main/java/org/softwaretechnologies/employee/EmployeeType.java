@@ -7,6 +7,9 @@ import java.time.YearMonth;
  * Тип сотрудника
  */
 public enum EmployeeType {
+
+
+
     /*
     Формула вычисления зп: если месяц четный, то baseSalary, иначе baseSalary/2
      */
@@ -29,3 +32,4 @@ public enum EmployeeType {
     };
 
 }
+

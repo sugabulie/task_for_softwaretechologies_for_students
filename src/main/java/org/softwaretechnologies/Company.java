@@ -15,26 +15,17 @@ public class Company {
         this.employeeList = new ArrayList<>();
     }
 
-    /**
-     * Создает и добавляет сотрудника в коллекцию employeeList.
-     * @param name имя работника
-     * @param baseSalary базовая зарплата сотрудника
-     * @param type тип работника
-     */
     public void addEmployee(String name, int baseSalary, EmployeeType type) {
-        // TODO: реализуйте вышеуказанную функцию
-
+employeeList.add(EmployeeFactory.createEmployee(name, baseSalary, type));
     }
 
-    /**
-     * Возвращает сумму зарплат всех сотрудников за указанный месяц
-     * @param month номер месяца
-     * @return сумма зарплат всех сотрудников за указанный месяц
-     */
-    public int getMonthSalary(int month) {
-        // TODO: реализуйте вышеуказанную функцию
 
-        return 0;
+    public int getMonthSalary(int month) {
+
+    int res=0;
+    for(Employee employee:employeeList)
+        res=employee.getMonthSalary(month);
+        return res;
     }
 
     public String getName() {
