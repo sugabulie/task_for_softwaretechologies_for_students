@@ -23,8 +23,8 @@ employeeList.add(EmployeeFactory.createEmployee(name, baseSalary, type));
     public int getMonthSalary(int month) {
 
     int res=0;
-    for(Employee employee:employeeList)
-        res=employee.getMonthSalary(month);
+    for(Employee employee:employeeList){
+        res+=employee.getMonthSalary(month);}
         return res;
     }
 
