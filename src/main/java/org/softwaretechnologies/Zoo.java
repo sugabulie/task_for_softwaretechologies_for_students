@@ -34,7 +34,6 @@ public class Zoo {
      */
     public List<String> soundAllAnimalsSortByName() {
         List<String> sounds = new ArrayList<>();
-        // TODO заполните корректно список звуков
 
         return sounds;
     }
