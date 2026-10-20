@@ -1,4 +1,4 @@
-package org.softwaretechnologies;
+        package org.softwaretechnologies;
 
 import java.util.Optional;
 
@@ -9,8 +9,11 @@ public class ExceptionTask {
        Вызвана функция printMessage
      */
     public static void printMessage() {
-        throwRuntimeException();
-        // TODO: реализуйте вышеуказанную функцию
+        try{
+            System.out.println("Вызвана функция printMessage");
+        } catch (java.lang.RuntimeException e) {
+            throwRuntimeException();
+        }
 
     }
 
@@ -20,8 +23,11 @@ public class ExceptionTask {
      Вызвана функция printMessage2
      */
     public static void printMessage2() throws Exception {
-        throwCatchableException();
-        // TODO: реализуйте вышеуказанную функцию
+        try{
+            System.out.println("Вызвана функция printMessage2");
+        } catch (Exception e) {
+            throwCatchableException();
+        }
     }
 
     private static void throwCatchableException() throws Exception {
@@ -39,10 +45,12 @@ public class ExceptionTask {
      * @return dividend/divisor
      * @throws DivideOnNullException если divisor равен 0
      */
-    public static int divide(int dividend, int divisor) throws DivideOnNullException {
-
-        // TODO: реализуйте вышеуказанную функцию
-        return dividend/divisor;
+    public static int divide(int dividend, int divisor )throws DivideOnNullException{
+    try {
+        return dividend / divisor;
+    }catch (ArithmeticException e){
+          throw new DivideOnNullException(e);
+    }
     }
 
     /**
@@ -55,10 +63,16 @@ public class ExceptionTask {
      * @return конкатенацию двух строк: кротчайшую из двух строк с другой строкой.
      */
     public static Optional<String> mergeStrings(String first, String second) {
-        // TODO: реализуйте вышеуказанную функцию
-
-
-
+    try{
         return Optional.of(first.length() > second.length() ? first + second : second + first);
+    }catch (NullPointerException e){
+        try{
+            return (first==null)?Optional.of(second):Optional.of(first);
+        }catch (NullPointerException e1){
+            return Optional.empty();
+        }
+    }
+
+
     }
 }
