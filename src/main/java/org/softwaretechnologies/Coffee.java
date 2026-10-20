@@ -3,8 +3,21 @@ package org.softwaretechnologies;
 //  cтоимость базового напитка равна 50.
 //  описание "only coffee"
 
-public class Coffee {
+public class Coffee implements CoffeeInterface{
+    private String description ="only coffee";
+    private int cost=50;
 
+    public Coffee() {
+    }
 
+    @Override
+    public int getCost() {
+        return cost;
+    }
+
+    @Override
+    public String description() {
+        return description;
+    }
 }
 
