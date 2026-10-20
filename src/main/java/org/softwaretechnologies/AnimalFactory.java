@@ -1,7 +1,6 @@
 package org.softwaretechnologies;
 
-import org.softwaretechnologies.animals.Animal;
-import org.softwaretechnologies.animals.AnimalType;
+import org.softwaretechnologies.animals.*;
 
 public class AnimalFactory {
 
@@ -14,7 +13,11 @@ public class AnimalFactory {
 
 
     public static Animal createAnimal(String name, AnimalType type) {
-
+        switch (type){
+            case DOG -> {return new Dog(name);}
+            case CAT -> {return new Cat(name);}
+            case COW -> {return new Cow(name);}
+            }
         return createAnimal(name,type);
     }
 }
